@@ -96,8 +96,8 @@ export default function NewAppointment(props) {
       await SynchronizeReminders(); // i couldn't create an appointment without getting reminder perms
       await SynchronizeCalendar();
       await addAppointment(uid, appointmentInfo);
-      await schedulePushNotification();
       props.navigation.navigate('Appointment');
+      await schedulePushNotification();
     }
   };
 
