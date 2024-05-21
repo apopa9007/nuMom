@@ -14,7 +14,7 @@ import DateTimePickerModal from 'react-native-modal-datetime-picker';
 import moment from 'moment';
 import * as Calendar from 'expo-calendar';
 import * as Localization from 'expo-localization';
-import * as Permissions from 'expo-permissions';
+//import * as Permissions from 'expo-permissions';
 import * as Notifications from 'expo-notifications';
 import {Appearance} from 'react-native';
 import Constants from 'expo-constants';
@@ -94,7 +94,7 @@ export default function NewAppointment(props) {
       alert(translate('fillOutAllFields'));
     } else {
       await SynchronizeReminders(); // i couldn't create an appointment without getting reminder perms
-      await SynchronizeCalendar();
+      //await SynchronizeCalendar();
       await addAppointment(uid, appointmentInfo);
       await schedulePushNotification();
       props.navigation.navigate('Appointment');
@@ -160,31 +160,7 @@ export default function NewAppointment(props) {
     }
   };
 
-  SynchronizeCalendar = async () => {
-    const {status} = await Permissions.askAsync(Permissions.CALENDAR);
 
-    if (status === 'granted') {
-      const calendars = await Calendar.getCalendarsAsync();
-      const defaultCalendars = calendars.filter(
-        (item) => item.allowsModifications === true
-      );
-
-      try {
-        const createEventAsyncRes = await addEventsToCalendar(
-          defaultCalendars[0].id
-        );
-        // console.log(createEventAsyncRes);
-        // setEventId(createEventAsyncRes.toString());
-      } catch (err) {
-        Alert.alert(err.message);
-      }
-    }
-  };
-
-  SynchronizeReminders = async () => {
-    const {status} = await Permissions.askAsync(Permissions.REMINDERS);
-    // need to handle perms not being granted, since it cannot create an appointment without reminders
-  };
 
   function checkMode() {
     // check if user's device/machine is in dark/light mode to choose a contrasting color
@@ -360,10 +336,10 @@ async function schedulePushNotification() {
 async function registerForPushNotificationsAsync() {
   let token;
   if (Constants.isDevice) {
-    const {status: existingStatus} = await Notifications.getPermissionsAsync();
+    const {status: existingStatus} = await Notifications.requestPermissionsAsync();
     let finalStatus = existingStatus;
     if (existingStatus !== 'granted') {
-      const {status} = await Notifications.requestForegroundPermissionsAsync();
+      const {status} = await Notifications.requestPermissionsAsync();
       finalStatus = status;
     }
     if (finalStatus !== 'granted') {
