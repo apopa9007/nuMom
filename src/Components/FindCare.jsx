@@ -1,6 +1,5 @@
 import React, {useState, useEffect, useMemo} from 'react';
 import {ScrollView, View} from 'react-native';
-import {Dropdown} from 'react-native-material-dropdown-v2';
 import SelectionButton from './SelectionButton';
 import appStyles from './AppStyles';
 import translate from './getLocalizedText';
@@ -22,8 +21,8 @@ export default function FindCare(props) {
 
   const window = appStyles.win;
 
-  const clinicsButtons = useMemo (() => {
-      return props.clinics.map((clinic, key) => (
+  const clinicsButtons = useMemo(() => {
+    return props.clinics.map((clinic, key) => (
       <SelectionButton
         style={appStyles.ClinicSelectionButton}
         key={key}

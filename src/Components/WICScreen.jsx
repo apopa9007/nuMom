@@ -3,7 +3,6 @@ import {Text, View, Linking, ScrollView, StyleSheet} from 'react-native';
 import {getPreciseDistance} from 'geolib';
 import {Picker} from '@react-native-picker/picker';
 import * as Location from 'expo-location';
-import {Dropdown} from 'react-native-material-dropdown-v2';
 import {onValue} from 'firebase/database';
 import Button from './Button';
 import translate from './getLocalizedText';
@@ -153,12 +152,14 @@ export const wicLocations = (props) => {
 
   // This is a holder function for fetching the facilities (clinics and shelters) asynchronously
   let fetchResources = () => {
-    fetchWIC().then((wicData) => {
-      sortWIC(wicData); // Sorts the fetched WIC
-    }).catch((error) => {
-      console.error('Error fetching WIC:', error);
-      // Handle the error
-    });
+    fetchWIC()
+      .then((wicData) => {
+        sortWIC(wicData); // Sorts the fetched WIC
+      })
+      .catch((error) => {
+        console.error('Error fetching WIC:', error);
+        // Handle the error
+      });
   };
 
   let fetchWIC = async () =>
@@ -317,7 +318,7 @@ export const wicFeeding = () => {
         <View>
           <BetterMenu
             style={appStyles.ImageDarkOnSelectionButton}
-            text= {translate('WSFmilk')}
+            text={translate('WSFmilk')}
             subtext={translate('WSFmilkAge0Subtext')}
             icon={breastfeeding}
           />
@@ -419,7 +420,10 @@ export const wicFeeding = () => {
             style={appStyles.FeedingNotes}
             text={translate('WSFAge-1subtext2')}
           />
-          <BetterMenu style={appStyles.FeedingNotes} text={translate('WSFAge-1subtext3')} />
+          <BetterMenu
+            style={appStyles.FeedingNotes}
+            text={translate('WSFAge-1subtext3')}
+          />
           <BetterMenu
             style={appStyles.FeedingNotes}
             text={translate('WSFAge-1subtext4')}
@@ -467,12 +471,13 @@ export const wicFeeding = () => {
     }
     return <View />;
   };
-//translate('WSDropdownTitle')
+  //translate('WSDropdownTitle')
   return (
     <View style={appStyles.contentContainer}>
       <View style={styles.containerDropDown}>
         <Text>
-        {translate('WSDropdownTitle')}{'\n'}
+          {translate('WSDropdownTitle')}
+          {'\n'}
         </Text>
         <Picker
           selectedValue={age}

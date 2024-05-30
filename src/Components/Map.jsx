@@ -35,7 +35,7 @@ export default function Map(props) {
   let getLocationAsync = () => {
     return new Promise((resolve, reject) => {
       Location.requestForegroundPermissionsAsync()
-        .then(({ status }) => {
+        .then(({status}) => {
           if (status !== 'granted') {
             setErrorMessage('Permissions not granted.');
             setRegion(defaultRegion);
@@ -59,7 +59,7 @@ export default function Map(props) {
           reject(error);
         });
     });
-  };  
+  };
 
   return (
     <>
@@ -81,7 +81,6 @@ export default function Map(props) {
           initialRegion={region}
           loadingEnabled
           onPress={props.onPress}
-          provider="google"
           showsMyLocationButton
           showsCompass
           style={{
