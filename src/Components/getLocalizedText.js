@@ -1,4 +1,4 @@
-import {NativeModules} from 'react-native';
+import {NativeModules, Platform} from 'react-native';
 import en_US from '../en_US.json';
 import es_ES from '../es_ES.json';
 import ht_HT from '../ht_HT.json';
