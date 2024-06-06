@@ -1,5 +1,12 @@
 import React, {useState, useEffect} from 'react';
-import {Text, View, Linking, ScrollView, StyleSheet} from 'react-native';
+import {
+  Text,
+  View,
+  Linking,
+  ScrollView,
+  StyleSheet,
+  Platform,
+} from 'react-native';
 import {getPreciseDistance} from 'geolib';
 import {Picker} from '@react-native-picker/picker';
 import * as Location from 'expo-location';

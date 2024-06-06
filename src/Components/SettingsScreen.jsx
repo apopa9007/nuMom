@@ -13,10 +13,9 @@ import {
 } from 'react-native';
 import * as Haptics from 'expo-haptics';
 import {Picker} from '@react-native-picker/picker';
-import firebase from 'firebase/compat/app';
 import 'firebase/compat/auth';
 import 'firebase/compat/firestore';
-import {getDatabase, ref, set, onValue, update} from 'firebase/database';
+import {getDatabase, ref, onValue, update} from 'firebase/database';
 import Button from './Button';
 import {getUserInfo, getUid} from '../Firebase';
 import logOutImg from '../../assets/logOutIcon.png';
@@ -204,7 +203,8 @@ const SettingsScreen = (props) => {
   }
 
   function validateBaby(babyDob, infant) {
-    const dobBabyRegex = /^(0[1-9]|1[0-2])\/(0[1-9]|1\d|2\d|3[01])\/(19|20)\d{2}$/;
+    const dobBabyRegex =
+      /^(0[1-9]|1[0-2])\/(0[1-9]|1\d|2\d|3[01])\/(19|20)\d{2}$/;
     if (infant) {
       return babyDob.match(dobBabyRegex) !== null;
     }
@@ -319,12 +319,12 @@ const SettingsScreen = (props) => {
               </Text>
             </View>
             <View style={appStyles.TextInput.View}>
-                <TextBox
-                  placeholder={translate('fullName')}
-                  style={appStyles.TextInput.TextInput}
-                  value={fullName}
-                  onChangeText={(text) => setFullName(text)}
-                />
+              <TextBox
+                placeholder={translate('fullName')}
+                style={appStyles.TextInput.TextInput}
+                value={fullName}
+                onChangeText={(text) => setFullName(text)}
+              />
             </View>
           </View>
 
@@ -367,7 +367,7 @@ const SettingsScreen = (props) => {
                 </Text>
               </View>
               <View style={appStyles.TextInput.View}>
-              <TextBox
+                <TextBox
                   placeholderTextColor={appStyles.DefaultPlaceholderTextColor}
                   placeholder={translate('phoneNumberInput')}
                   style={appStyles.TextInput.TextInput}
@@ -416,7 +416,7 @@ const SettingsScreen = (props) => {
                 <Picker.Item label={translate('No')} value={false} />
               </Picker>
             </View>
-            {/* {infant === true ? 
+            {/* {infant === true ?
             <View style={styles.containerDropDown}>
                   <Text >{translate("selectGenders")}</Text>
                  <Picker
@@ -427,7 +427,7 @@ const SettingsScreen = (props) => {
                     }}>
                     <Picker.Item label={translate("Male")} value={true} key='1' />
                     <Picker.Item label={translate("Female")} value={false}  key='2'/>
-                 </Picker> 
+                 </Picker>
             </View>
               : null} */}
             {infant === true ? (

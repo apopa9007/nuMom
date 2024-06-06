@@ -6,6 +6,7 @@ import {
   View,
   TouchableHighlight,
   KeyboardAvoidingView,
+  Platform,
 } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import appStyles from './AppStyles';
@@ -125,7 +126,7 @@ export default SignUpInfo = (props) => {
                 </Text>
               </View>
               <View style={{paddingTop: appStyles.win.height * 0.05}}>
-              <TextBox
+                <TextBox
                   placeholderTextColor={appStyles.DefaultPlaceholderTextColor}
                   placeholder={translate('emailInput')}
                   onChangeText={setEmail}

@@ -9,6 +9,7 @@ import {
   TouchableHighlight,
   KeyboardAvoidingView,
   StyleSheet,
+  Platform,
   Image,
 } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
@@ -106,7 +107,7 @@ export default function SignUpInfo(props) {
                 </Text>
               </Text>
               <View style={{paddingTop: appStyles.win.height * 0.05}}>
-              <TextBox
+                <TextBox
                   placeholderTextColor={appStyles.DefaultPlaceholderTextColor}
                   placeholder={translate('fullName')}
                   onChangeText={(text) => setName(text)}

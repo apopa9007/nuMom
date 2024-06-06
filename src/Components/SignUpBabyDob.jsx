@@ -5,6 +5,7 @@ import {
   View,
   TouchableHighlight,
   KeyboardAvoidingView,
+  Platform,
 } from 'react-native';
 import {TextInputMask} from 'react-native-masked-text';
 import AsyncStorage from '@react-native-async-storage/async-storage';
@@ -91,7 +92,7 @@ export default SignUpBabyDob = (props) => {
                 <Text style={appStyles.titleBlue}>{titletext}</Text>
               </View>
               <View style={{paddingTop: appStyles.win.height * 0.1}}>
-              <TextInputMask
+                <TextInputMask
                   placeholderTextColor={appStyles.DefaultPlaceholderTextColor}
                   placeholder={translate('dob')}
                   type="datetime"

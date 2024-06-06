@@ -7,6 +7,7 @@ import {
   TouchableHighlight,
   Keyboard,
   TextInput as TextBox,
+  Platform,
   StyleSheet,
   NativeModules,
   TouchableOpacity,
@@ -154,14 +155,14 @@ export default LogIn = (props) => {
                 }}
                 source={loginMainImage}
               />
-            <TextBox
+              <TextBox
                 placeholderTextColor={appStyles.DefaultPlaceholderTextColor}
                 style={appStyles.TextInputMask}
                 placeholder={translate('emailInput')}
                 onChangeText={setEmail}
               />
               <View>
-              <TextBox
+                <TextBox
                   placeholderTextColor={appStyles.DefaultPlaceholderTextColor}
                   style={appStyles.TextInputMask}
                   secureTextEntry={visible}

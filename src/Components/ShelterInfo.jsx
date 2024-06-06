@@ -1,4 +1,4 @@
-import {View, Linking, Text, ScrollView} from 'react-native';
+import {View, Linking, Text, ScrollView, Platform} from 'react-native';
 import React from 'react';
 import SelectionButton from './SelectionButton';
 import ActionButton from './Button';
@@ -38,30 +38,30 @@ export default function ShelterInfo(props) {
 
   const shelterInfo = `${props.shelter.address.street}\n${props.shelter.address.city}\n${props.shelter.address.state}, ${props.shelter.address.zipCode}`;
 
-  const getShelterDescription = () =>{
-    if (translate("language") == "en"){
+  const getShelterDescription = () => {
+    if (translate('language') == 'en') {
       return props.shelter.other.en;
-    };
-    if(translate("language") == "es"){
+    }
+    if (translate('language') == 'es') {
       return props.shelter.other.es;
-    };
-    if(translate("language") == "ht"){
+    }
+    if (translate('language') == 'ht') {
       return props.shelter.other.ht;
-    };
+    }
   };
 
-  const getShelterTime = () =>{
-    if (translate("language") == "en"){
+  const getShelterTime = () => {
+    if (translate('language') == 'en') {
       return props.shelter.opened.en;
-    };
-    if(translate("language") == "es"){
+    }
+    if (translate('language') == 'es') {
       return props.shelter.opened.es;
-    };
-    if(translate("language") == "ht"){
+    }
+    if (translate('language') == 'ht') {
       return props.shelter.opened.ht;
-    };
+    }
   };
-  
+
   return (
     <ScrollView
       contentContainerStyle={{alignItems: 'center', maxWidth: '100%'}}

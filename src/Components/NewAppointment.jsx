@@ -7,14 +7,13 @@ import {
   KeyboardAvoidingView,
   Pressable,
   StyleSheet,
-  Alert,
+  Platform,
 } from 'react-native';
 import React, {useState, useEffect, useRef} from 'react';
 import DateTimePickerModal from 'react-native-modal-datetime-picker';
 import moment from 'moment';
 import * as Calendar from 'expo-calendar';
 import * as Localization from 'expo-localization';
-//import * as Permissions from 'expo-permissions';
 import * as Notifications from 'expo-notifications';
 import {Appearance} from 'react-native';
 import Constants from 'expo-constants';
@@ -160,8 +159,6 @@ export default function NewAppointment(props) {
     }
   };
 
-
-
   function checkMode() {
     // check if user's device/machine is in dark/light mode to choose a contrasting color
     const matchResult = Appearance.getColorScheme();
@@ -177,7 +174,7 @@ export default function NewAppointment(props) {
         enabled={false}
       >
         <View style={appStyles.TextInputAppointment.View}>
-        <TextBox
+          <TextBox
             placeholderTextColor={appStyles.DefaultPlaceholderTextColor}
             placeholder={translate('appointmentName')}
             onChangeText={setName}
@@ -186,7 +183,7 @@ export default function NewAppointment(props) {
           />
         </View>
         <View style={appStyles.TextInputAppointment.View}>
-        <TextBox
+          <TextBox
             placeholderTextColor={appStyles.DefaultPlaceholderTextColor}
             placeholder={translate('appointmentAddress')}
             onChangeText={setAddress}
@@ -195,7 +192,7 @@ export default function NewAppointment(props) {
           />
         </View>
         <View style={appStyles.TextInputAppointment.View}>
-        <TextBox
+          <TextBox
             placeholderTextColor={appStyles.DefaultPlaceholderTextColor}
             placeholder={translate('appointmentExtra')}
             onChangeText={setExtra}
@@ -336,7 +333,8 @@ async function schedulePushNotification() {
 async function registerForPushNotificationsAsync() {
   let token;
   if (Constants.isDevice) {
-    const {status: existingStatus} = await Notifications.requestPermissionsAsync();
+    const {status: existingStatus} =
+      await Notifications.requestPermissionsAsync();
     let finalStatus = existingStatus;
     if (existingStatus !== 'granted') {
       const {status} = await Notifications.requestPermissionsAsync();

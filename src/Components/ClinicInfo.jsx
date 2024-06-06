@@ -1,4 +1,4 @@
-import {View, Linking, Text, ScrollView} from 'react-native';
+import {View, Linking, Text, ScrollView, Platform} from 'react-native';
 import React from 'react';
 import SelectionButton from './SelectionButton';
 import ActionButton from './Button';

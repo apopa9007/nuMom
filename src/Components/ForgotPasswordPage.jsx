@@ -5,6 +5,7 @@ import {
   TouchableHighlight,
   KeyboardAvoidingView,
   Keyboard,
+  Platform,
 } from 'react-native';
 import * as Haptics from 'expo-haptics';
 import appStyles from './AppStyles';
@@ -63,7 +64,7 @@ const ForgotPasswordPage = (props) => {
             style={{flex: 1, alignItems: 'center', justifyContent: 'center'}}
           >
             <View style={appStyles.TextInput.View}>
-            <TextBox
+              <TextBox
                 placeholderTextColor={appStyles.DefaultPlaceholderTextColor}
                 placeholder={translate('emailInput')}
                 style={appStyles.TextInput.TextInput}

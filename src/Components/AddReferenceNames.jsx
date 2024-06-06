@@ -4,6 +4,7 @@ import {
   TextInput,
   Keyboard,
   KeyboardAvoidingView,
+  Platform,
   Pressable,
 } from 'react-native';
 import {useState} from 'react';

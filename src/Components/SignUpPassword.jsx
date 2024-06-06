@@ -6,6 +6,7 @@ import {
   TouchableOpacity,
   View,
   TouchableHighlight,
+  Platform,
   KeyboardAvoidingView,
   StyleSheet,
 } from 'react-native';
@@ -28,7 +29,7 @@ export default SignUpPassword = (props) => {
   const [showRepeat, setShowRepeat] = React.useState(false);
   const [visible, setVisible] = React.useState(true);
   const [visibleRepeat, setVisibleRepeat] = React.useState(true);
-  const special_chars = ['!','#','$','*','%'];
+  const special_chars = ['!', '#', '$', '*', '%'];
   let containsSpecialChar = false;
 
   useEffect(() => {
@@ -42,7 +43,7 @@ export default SignUpPassword = (props) => {
 
   let onPress = () => {
     for (let i = 0; i < password.length; i++) {
-      if (special_chars.includes(password[i])){
+      if (special_chars.includes(password[i])) {
         containsSpecialChar = true;
         break;
       }
@@ -53,7 +54,7 @@ export default SignUpPassword = (props) => {
       alert(translate('fillOutAllFields'));
     } else if (password.length < 6) {
       alert(translate('passwordTooShort'));
-    } else if (!containsSpecialChar){
+    } else if (!containsSpecialChar) {
       alert(translate('passwordWeak'));
     } else {
       // props.setUserInfo({password});
@@ -97,7 +98,7 @@ export default SignUpPassword = (props) => {
               </Text>
               <View style={{paddingTop: appStyles.win.height * 0.05}}>
                 <View>
-                <TextBox
+                  <TextBox
                     placeholderTextColor={appStyles.DefaultPlaceholderTextColor}
                     style={appStyles.TextInputMask}
                     secureTextEntry={visible}
@@ -120,8 +121,8 @@ export default SignUpPassword = (props) => {
                 </View>
 
                 <View>
-                <TextBox
-                    placeholderTextColor = {appStyles.DefaultPlaceholderTextColor}
+                  <TextBox
+                    placeholderTextColor={appStyles.DefaultPlaceholderTextColor}
                     placeholder={translate('repeatPasswordInput')}
                     onChangeText={setRepeat}
                     secureTextEntry={visibleRepeat}

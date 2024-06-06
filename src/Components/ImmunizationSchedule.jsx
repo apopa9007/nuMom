@@ -5,6 +5,7 @@ import {
   View,
   ScrollView,
   StyleSheet,
+  Platform,
   Image,
 } from 'react-native';
 import {ListItem} from 'react-native-elements';
