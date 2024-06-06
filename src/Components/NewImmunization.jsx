@@ -3,6 +3,7 @@ import {
   TouchableOpacity,
   TextInput as TextBox,
   View,
+  Platform,
   StyleSheet,
 } from 'react-native';
 import React, {useEffect, useState} from 'react';
