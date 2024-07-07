@@ -8,6 +8,7 @@ import {
   Pressable,
   StyleSheet,
   Platform,
+  Alert,
 } from 'react-native';
 import React, {useState, useEffect, useRef} from 'react';
 import DateTimePickerModal from 'react-native-modal-datetime-picker';
@@ -92,13 +93,38 @@ export default function NewAppointment(props) {
     if (!name || !address) {
       alert(translate('fillOutAllFields'));
     } else {
-      await SynchronizeReminders(); // i couldn't create an appointment without getting reminder perms
-      //await SynchronizeCalendar();
+      await SynchronizeReminders();
       await addAppointment(uid, appointmentInfo);
-      props.navigation.navigate('Appointment');
       await schedulePushNotification();
+  
+      Alert.alert(
+        "Alert",
+        "An appointment has been created",
+        [
+          {
+            text: "OK",
+            onPress: () => props.navigation.navigate('Appointment')
+          }
+        ]
+      );
     }
   };
+  async function SynchronizeReminders() {
+   
+    console.log('SynchronizeReminders called');
+    
+    
+    try {
+      const { status } = await Calendar.requestRemindersPermissionsAsync();
+      if (status !== 'granted') {
+        alert(translate('reminderPermissionsRequired'));
+        return;
+      }
+      
+    } catch (error) {
+      console.error('Error synchronizing reminders:', error);
+    }
+  }
 
   showDatePicker = () => {
     setDatePickerVisibility(true);
@@ -307,13 +333,12 @@ function getTriggerTime() {
   );
   let timeTillNoti = 60;
   if (daysDifference >= 2) {
-    timeTillNoti = daysDifference * 86400 - 86400;
+    timeTillNoti = Math.floor(daysDifference * 86400 - 86400);
+  } else if (daysDifference >= 0) {
+    timeTillNoti = Math.floor((daysDifference / 2) * 86400);
   } else {
-    if (daysDifference < 0) {
-      daysDifference *= -1;
-    }
-    console.log(`days difference is ${daysDifference}`);
-    timeTillNoti = (daysDifference / 2) * 60;
+    console.log('Appointment date is in the past');
+    timeTillNoti = 60; 
   }
   console.log(`appt noti will trigger in ${timeTillNoti} seconds`);
   return timeTillNoti;
